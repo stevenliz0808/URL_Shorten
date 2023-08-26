@@ -15,7 +15,9 @@ app.get("/", (req, res) => {
 
 app.get("/:id", (req, res) => {
   const id = req.params.id;
-  res.redirect("https://www.google.com");
+  // const inputUrl = urlArrays.inputUrl
+  // const outputUrl = urlArrays.outputUrl
+  res.send(id);
 });
 
 app.listen(port, () => {
