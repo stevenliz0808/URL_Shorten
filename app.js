@@ -8,6 +8,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
+app.use(express.json())
 
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
@@ -18,20 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:id", (req, res) => {
-  const dom = new JSDOM(
-    fs.readFileSync(path.join(__dirname, "public", "javascripts", "main.js"), "utf8"),
-    {
-      runScripts: "dangerously",
-    }
-  );
-
-  const window = dom.window;
-  const $ = require("jquery")(window);
-
   const id = req.params.id;
-  console.log(window.inputUrl);
-  // const inputUrl = urlArrays.inputUrl
-  // const outputUrl = urlArrays.outputUrl
   res.send(id);
 });
 
