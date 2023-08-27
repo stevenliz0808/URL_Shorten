@@ -1,0 +1,31 @@
+<form action="/result">
+  <input
+    type="text"
+    name="inputText"
+    class="form-control mb-3"
+    id="input-url"
+    placeholder="Input URL here"
+    aria-label="Input URL here"
+    aria-describedby="button-addon2"
+  />
+  <button
+    class="btn btn-outline-primary w-100 mb-5"
+    type="submit"
+    id="btn-shorten"
+  >Shorten</button>
+</form>
+
+<div id="success" class="d-flex flex-column align-items-center">
+  <h2 class="mt-3">Success! Please use this link:</h2>
+  <a
+    id="textToCopy"
+    class="mb-3 text-center"
+    href="{{shortenUrl}}"
+  >{{shortenUrl}}</a>
+  <button
+    type="button"
+    class="btn btn-primary"
+    id="btn-copy"
+    data-clipboard-target="#textToCopy"
+  >Copy</button>
+</div>
