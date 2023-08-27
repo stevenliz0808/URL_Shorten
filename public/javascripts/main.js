@@ -1,10 +1,7 @@
+
 const letters = "abcdefghijklmnopqrustvwxyz";
 const numbers = "123456789";
-const btnShorten = document.querySelector("#btn-shorten");
-const formControl = document.querySelector(".form-control");
-const renderPanel = document.querySelector(".render-panel");
-const btnCopy = document.querySelector("#btn-copy");
-
+// const renderPanel = document.querySelector(".render-panel");
 let inputUrl = [];
 let outputUrl = [];
 let inputValue = "";
@@ -26,34 +23,44 @@ function addRandomLetters(url) {
 }
 
 function renderSuccess(url) {
-  renderPanel.innerHTML = `
-  <input
-  type="text"
-  class="form-control mb-3"
-  placeholder="Input URL here"
-  aria-label="Input URL here"
-  aria-describedby="button-addon2"
-/>
-<button
-  class="btn btn-outline-primary w-100"
-  type="button"
-  id="btn-shorten"
->Shorten</button>
+  let htmlContent = `
   <h2 class="mt-3">Success! Please use this link:</h2>
-  <a class="mb-3" href="${url}">${url}</a>
-  <button type="button" class="btn btn-primary" id="btn-copy">Copy</button>`;
+  <a class="mb-3 text-center" href="${url}">${url}</a>
+  <button type="button" class="btn btn-primary" id="btn-copy">Copy</button>
+  `;
+  $("#success").html(htmlContent);
 }
 
-renderPanel.addEventListener("input", (event) => {
-  inputValue = event.target.value;
+$(document).ready(function () {
+  $("#render-panel").on("input", "#input-url", function () {
+    inputValue = $(this).val();
+  });
 });
 
-renderPanel.addEventListener("click", (event) => {
-  if (event.target.id === "btn-shorten") {
-    let url = addRandomLetters(inputValue);
-    renderSuccess(url);
-    alert(outputUrl);
-  } else if (event.target.id === "btn-copy") {
-    alert("copy");
-  }
+$(document).ready(function () {
+  $("#render-panel").on("click", "#btn-shorten", function () {
+      let url = addRandomLetters(inputValue);
+      renderSuccess(url);
+  });
 });
+
+// renderPanel.addEventListener("input", (event) => {
+//   inputValue = event.target.value;
+// });
+
+// renderPanel.addEventListener("click", (event) => {
+//   if (event.target.id === "btn-shorten") {
+//     let url = addRandomLetters(inputValue);
+//     renderSuccess(url);
+//     alert(inputUrl);
+//   } else if (event.target.id === "btn-copy") {
+//     alert("copy");
+//   }
+// });
+
+// module.exports = {
+//   inputUrl: inputUrl,
+//   outputUrl: outputUrl,
+// };
+
+window.inputUrl = inputUrl

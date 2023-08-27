@@ -1,5 +1,9 @@
 const express = require("express");
 const { engine } = require("express-handlebars");
+const { JSDOM } = require("jsdom");
+const fs = require("fs"); 
+const path = require("path");
+
 const app = express();
 const port = 3000;
 
@@ -14,7 +18,18 @@ app.get("/", (req, res) => {
 });
 
 app.get("/:id", (req, res) => {
+  const dom = new JSDOM(
+    fs.readFileSync(path.join(__dirname, "public", "javascripts", "main.js"), "utf8"),
+    {
+      runScripts: "dangerously",
+    }
+  );
+
+  const window = dom.window;
+  const $ = require("jquery")(window);
+
   const id = req.params.id;
+  console.log(window.inputUrl);
   // const inputUrl = urlArrays.inputUrl
   // const outputUrl = urlArrays.outputUrl
   res.send(id);

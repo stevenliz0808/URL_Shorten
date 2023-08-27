@@ -2,6 +2,8 @@
   <head>
     <meta charset="utf-8" />
     <title>URL Shortener</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
   </head>
   <body>
@@ -9,7 +11,7 @@
       <div class="d-flex flex-column align-items-center m-3">
         <h1>URL Shortener</h1>
         <img class="mb-3 w-25" src="/images/ContentImage.png" />
-        <div class="render-panel d-flex flex-column align-items-center m-3 w-50">
+        <div class="d-flex flex-column align-items-center m-3 w-50" id="render-panel">
           {{{body}}}
         </div>
       </div>
